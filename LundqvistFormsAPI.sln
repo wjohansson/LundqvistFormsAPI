@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LundqvistFormsAPI", "LundqvistFormsAPI\LundqvistFormsAPI.csproj", "{4A2F5F85-9400-4973-AF25-C4198C8253AB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormsLibrary", "..\LundqvistForms\FormsLibrary\FormsLibrary.csproj", "{FE8AE55B-5103-4115-9848-95EA5E183B89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A2F5F85-9400-4973-AF25-C4198C8253AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A2F5F85-9400-4973-AF25-C4198C8253AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A2F5F85-9400-4973-AF25-C4198C8253AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A2F5F85-9400-4973-AF25-C4198C8253AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE8AE55B-5103-4115-9848-95EA5E183B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE8AE55B-5103-4115-9848-95EA5E183B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE8AE55B-5103-4115-9848-95EA5E183B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE8AE55B-5103-4115-9848-95EA5E183B89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C94750E-3F55-4222-8D89-4E2E6CD2B9A1}
+	EndGlobalSection
+EndGlobal
