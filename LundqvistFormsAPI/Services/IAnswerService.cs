@@ -10,7 +10,7 @@ namespace LundqvistFormsAPI.Services
 
         Task<AnswerModel> EditAnswer(AnswerModel answer);
 
-        Task<List<AnswerModel>> CurrentAnswers(QuestionModel question);
+        Task<List<AnswerModel>> CurrentAnswers(Guid? formId);
 
         Task<AnswerModel> GetAnswer(AnswerModel answer);
     }

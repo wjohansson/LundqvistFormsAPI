@@ -4,6 +4,8 @@ namespace LundqvistFormsAPI.Services
 {
     public interface IFormService
     {
+        Task<int> CountAnswers(FormModel form);
+
         Task<FormModel> CreateForm(FormModel form);
 
         Task<FormModel> DeleteForm(FormModel form);

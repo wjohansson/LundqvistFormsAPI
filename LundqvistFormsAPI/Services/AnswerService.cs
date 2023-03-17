@@ -20,9 +20,12 @@ namespace LundqvistFormsAPI.Services
             return answer;
         }
 
-        public async Task<List<AnswerModel>> CurrentAnswers(QuestionModel question)
+        public async Task<List<AnswerModel>> CurrentAnswers(Guid? formId)
         {
-            return _dbContext.Answers.ToList();
+            return _dbContext.Answers.Where(x => x.FormId == formId)
+                .Include(x => x.MultipleChoice)
+                .Include(x => x.Interval)
+                .ToList();
         }
 
         public async Task DeleteAnswer(AnswerModel answer)

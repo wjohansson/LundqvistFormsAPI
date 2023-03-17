@@ -32,13 +32,13 @@ namespace LundqvistFormsAPI.Controllers
 
         }
 
-        [HttpGet("Current")]
+        [HttpPut("Current")]
         public async Task<ActionResult<List<AnswerModel>>> CurrentAnswers()
         {
             try
             {
-                QuestionModel? question = Request.ReadFromJsonAsync<QuestionModel>().Result;
-                return Ok(await _answerService.CurrentAnswers(question));
+                Guid? formId = Request.ReadFromJsonAsync<Guid>().Result;
+                return Ok(await _answerService.CurrentAnswers(formId));
             }
             catch (Exception)
             {

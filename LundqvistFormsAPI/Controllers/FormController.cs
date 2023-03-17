@@ -17,6 +17,23 @@ namespace LundqvistFormsAPI.Controllers
             _formService = formService;
         }
 
+        [HttpPut("CountAnswers")]
+        public async Task<ActionResult<int>> CountAnswers()
+        {
+            try
+            {
+                FormModel? form = Request.ReadFromJsonAsync<FormModel>().Result;
+                var answers = await _formService.CountAnswers(form);
+
+                return Ok(answers);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Something went wrong with creating the form");
+            }
+
+        }
+
         [HttpPost("Create")]
         public async Task<ActionResult<FormModel>> CreateForm()
         {
