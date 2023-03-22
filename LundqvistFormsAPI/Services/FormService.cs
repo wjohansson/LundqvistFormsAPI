@@ -58,14 +58,17 @@ namespace LundqvistFormsAPI.Services
 
         public async Task<FormModel> EditForm(FormModel form)
         {
-            FormModel oldForm = _dbContext.Forms.First(x => x.FormId == form.FormId);
+            FormModel oldForm = _dbContext.Forms
+                .Include(x => x.Answers.OrderBy(x => x.AnswerDate)).ThenInclude(x => x.MultipleChoice)
+                .Include(x => x.Answers.OrderBy(x => x.AnswerDate)).ThenInclude(x => x.Interval)
+                .First(x => x.FormId == form.FormId);
 
             _dbContext.Forms.Remove(oldForm);
             await _dbContext.SaveChangesAsync();
 
-            foreach (AnswerModel answer in form.Answers.ToList())
+            foreach (AnswerModel answer in oldForm.Answers.ToList())
             {
-                form.Answers.Remove(answer);
+                form.Answers.Add(answer);
             }
 
             await _dbContext.Forms.AddAsync(form);
@@ -80,18 +83,6 @@ namespace LundqvistFormsAPI.Services
                 .OrderBy(x => x.FormDate)
                 .Include(x => x.Segments.OrderBy(x => x.SegmentOrder)).ThenInclude(x => x.Questions.OrderBy(x => x.QuestionOrder))
                 .ToList();
-        }
-
-        public async Task<FormModel> GetForm(FormModel form)
-        {
-            return _dbContext.Forms
-                .Include(x => x.Answers.OrderBy(x => x.AnswerDate)).ThenInclude(x => x.MultipleChoice)
-                .Include(x => x.Answers.OrderBy(x => x.AnswerDate)).ThenInclude(x => x.Interval)
-                .Include(x => x.Segments.OrderBy(x => x.SegmentOrder)).ThenInclude(x => x.Questions.OrderBy(x => x.QuestionOrder)).ThenInclude(x => x.ChoiceOptions.OrderBy(x => x.ChoiceOrder))
-                .Include(x => x.Segments.OrderBy(x => x.SegmentOrder)).ThenInclude(x => x.Questions.OrderBy(x => x.QuestionOrder)).ThenInclude(x => x.ScaleOptions)
-                .Include(x => x.Segments.OrderBy(x => x.SegmentOrder)).ThenInclude(x => x.Questions.OrderBy(x => x.QuestionOrder)).ThenInclude(x => x.Answers.OrderBy(x => x.AnswerDate)).ThenInclude(x => x.MultipleChoice)
-                .Include(x => x.Segments.OrderBy(x => x.SegmentOrder)).ThenInclude(x => x.Questions.OrderBy(x => x.QuestionOrder)).ThenInclude(x => x.Answers.OrderBy(x => x.AnswerDate)).ThenInclude(x => x.Interval)
-                .First(x => x.FormId == form.FormId);
         }
 
         public async Task<FormModel> GetFormById(Guid? formId)

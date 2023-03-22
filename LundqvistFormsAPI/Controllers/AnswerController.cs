@@ -45,48 +45,5 @@ namespace LundqvistFormsAPI.Controllers
                 return BadRequest("Something went wrong with getting the answers");
             }
         }
-
-        [HttpPut("Delete")]
-        public async Task<ActionResult> DeleteAnswer()
-        {
-            try
-            {
-                AnswerModel? answer = await Request.ReadFromJsonAsync<AnswerModel>();
-                await _answerService.DeleteAnswer(answer);
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return BadRequest("Something went wrong with deleting the answer");
-            }
-        }
-
-        [HttpPut("Edit")]
-        public async Task<ActionResult<FormModel>> EditAnswer()
-        {
-            try
-            {
-                AnswerModel? answer = Request.ReadFromJsonAsync<AnswerModel>().Result;
-                return Ok(await _answerService.EditAnswer(answer));
-            }
-            catch (Exception)
-            {
-                return BadRequest("Something went wrong with editing the answer");
-            }
-        }
-
-        [HttpPut]
-        public async Task<ActionResult<AnswerModel>> GetAnswer()
-        {
-            try
-            {
-                AnswerModel? answer = Request.ReadFromJsonAsync<AnswerModel>().Result;
-                return Ok(await _answerService.GetAnswer(answer));
-            }
-            catch (Exception)
-            {
-                return BadRequest("Something went wrong with getting the answer");
-            }
-        }
     }
 }

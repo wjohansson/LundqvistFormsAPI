@@ -14,8 +14,6 @@ namespace LundqvistFormsAPI.Services
 
         Task<List<FormModel>> GetAllForms();
 
-        Task<FormModel> GetForm(FormModel form);
-
         Task<FormModel> GetFormById(Guid? formId);
 
     }

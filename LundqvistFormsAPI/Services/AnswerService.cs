@@ -27,37 +27,5 @@ namespace LundqvistFormsAPI.Services
                 .Include(x => x.Interval)
                 .ToList();
         }
-
-        public async Task DeleteAnswer(AnswerModel answer)
-        {
-            _dbContext.Answers.Remove(answer);
-            await _dbContext.SaveChangesAsync();
-        }
-
-        public async Task<AnswerModel> EditAnswer(AnswerModel answer)
-        {
-            AnswerModel newAnswer = _dbContext.Answers.First(x => x.AnswerId == answer.AnswerId);
-
-            newAnswer.MultipleChoice = answer.MultipleChoice;
-            newAnswer.SingleChoice = answer.SingleChoice;
-            newAnswer.DropdownChoice = answer.DropdownChoice;
-            newAnswer.Scale = answer.Scale;
-            newAnswer.Date = answer.Date;
-            newAnswer.Interval.StartDate = answer.Interval.StartDate;
-            newAnswer.Interval.EndDate = answer.Interval.EndDate;
-            newAnswer.Time = answer.Time;
-            newAnswer.ShortAnswer = answer.ShortAnswer;
-            newAnswer.LongAnswer = answer.LongAnswer;
-
-            await _dbContext.SaveChangesAsync();
-
-            return answer;
-        }
-
-        public async Task<AnswerModel> GetAnswer(AnswerModel answer)
-        {
-            return _dbContext.Answers.First(x => x.AnswerId == answer.AnswerId);
-
-        }
     }
 }

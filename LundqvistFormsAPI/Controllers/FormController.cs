@@ -85,20 +85,6 @@ namespace LundqvistFormsAPI.Controllers
             return Ok(await _formService.GetAllForms());
         }
 
-        [HttpPut]
-        public async Task<ActionResult<FormModel>> GetForm()
-        {
-            try
-            {
-                FormModel? form = Request.ReadFromJsonAsync<FormModel>().Result;
-                return Ok(await _formService.GetForm(form));
-            }
-            catch (Exception)
-            {
-                return BadRequest("Something went wrong with getting the form");
-            }
-        }
-
         [HttpPut($"GetById")]
         public async Task<ActionResult<FormModel>> GetFormById()
         {
