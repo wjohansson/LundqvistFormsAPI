@@ -51,7 +51,7 @@ namespace LundqvistFormsAPI.Services
         public async Task<FormModel> DeleteForm(FormModel form)
         {
             var oldForm = _dbContext.Forms.First(x => x.Equals(form));
-            _dbContext.Forms.Remove(oldForm);
+            oldForm.IsDeleted = true;
             await _dbContext.SaveChangesAsync();
             return oldForm;
         }
